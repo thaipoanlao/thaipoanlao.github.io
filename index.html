@@ -43,6 +43,21 @@
                 }
             }
         }
+
+    function shareMyCard() {
+        if (navigator.share) {
+            navigator.share({
+                title: 'นามบัตรดิจิทัลของไทยปนลาว สาวแว่น',
+                text: 'ฝากติดตามผลงานและช่องทางติดต่อด้วยนะคะ',
+                url: window.location.href // แชร์ลิงก์หน้าปัจจุบันให้อัตโนมัติ
+            })
+            .then(() => console.log('Successful share'))
+            .catch((error) => console.log('Error sharing', error));
+        } else {
+            // ถ้า Browser ไม่รองรับ (เช่นเปิดในคอมเก่าๆ) ให้เด้งไป Facebook แทน
+            window.open('https://www.thpl.me', '_blank');
+        }
+    }
     </script>
 </head>
 <body class="bg-gradient-to-br from-teal-50 to-blue-100 min-h-screen flex items-center justify-center p-4 selection:bg-teal-500 selection:text-white">
@@ -84,7 +99,7 @@
                     <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
                         <i class="fab fa-facebook-f"></i>
                     </div>
-                    <span class="font-medium text-gray-700 group-hover:text-blue-700 transition-colors">Facebook Page ไทยปนลาว สาวแว่น</span>
+                    <span class="font-medium text-gray-700 group-hover:text-blue-700 transition-colors">Facebook Page ไทยปนลาว สาวแว่น(1M)</span>
                 </div>
                 <i class="fas fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1"></i>
             </a>
@@ -93,7 +108,7 @@
                     <div class="w-10 h-10 rounded-full bg-gray-100 text-gray-900 flex items-center justify-center text-lg group-hover:bg-black group-hover:text-white transition-all duration-300 shadow-inner">
                         <i class="fab fa-tiktok"></i>
                     </div>
-                    <span class="font-medium text-gray-700 group-hover:text-black transition-colors">TikTok คลิปสั้น</span>
+                    <span class="font-medium text-gray-700 group-hover:text-black transition-colors">TikTok คลิปสั้น(1.2M)</span>
                 </div>
                 <i class="fas fa-chevron-right text-gray-300 group-hover:text-black transition-transform group-hover:translate-x-1"></i>
             </a>
@@ -106,46 +121,18 @@
                 </div>
                 <i class="fas fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1"></i>
 
-            
 
-            <a href="#" target="_blank" class="group flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-pink-300 hover:shadow-md transition-all duration-300 animate-slide-up" style="animation-delay: 0.4s;">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-pink-50 text-pink-500 flex items-center justify-center text-lg group-hover:bg-gradient-to-tr group-hover:from-yellow-400 group-hover:via-red-500 group-hover:to-purple-500 group-hover:text-white transition-all duration-300">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <span class="font-medium text-gray-700 group-hover:text-pink-600 transition-colors">Instagram ผลงาน</span>
-                </div>
-                <i class="fas fa-chevron-right text-gray-300 group-hover:text-pink-500 transition-transform group-hover:translate-x-1"></i>
-            </a>
-
-            <a href="#" target="_blank" class="group flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-teal-300 hover:shadow-md transition-all duration-300 animate-slide-up" style="animation-delay: 0.5s;">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-teal-50 text-teal-600 flex items-center justify-center text-lg group-hover:bg-teal-600 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-map-marker-alt"></i>
-                    </div>
-                    <span class="font-medium text-gray-700 group-hover:text-teal-700 transition-colors">แผนที่ร้าน / ที่อยู่</span>
-                </div>
-                <i class="fas fa-chevron-right text-gray-300 group-hover:text-teal-500 transition-transform group-hover:translate-x-1"></i>
-            </a>
-
-            <a href="tel:0812345678" class="group flex items-center justify-between p-4 bg-white rounded-xl shadow-sm border border-gray-100 hover:border-blue-300 hover:shadow-md transition-all duration-300 animate-slide-up" style="animation-delay: 0.6s;">
-                <div class="flex items-center gap-4">
-                    <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-lg group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
-                        <i class="fas fa-phone-alt"></i>
-                    </div>
-                    <span class="font-medium text-gray-700 group-hover:text-blue-700 transition-colors">โทรศัพท์ติดต่อ</span>
-                </div>
-                <i class="fas fa-chevron-right text-gray-300 group-hover:text-blue-500 transition-transform group-hover:translate-x-1"></i>
-            </a>
-
+                
         </div>
 
         <div class="bg-gray-50 py-4 text-center border-t border-gray-100">
             <div class="flex justify-center gap-4 mb-2 text-gray-400">
-                <a href="#" class="hover:text-teal-600 transition"><i class="fas fa-envelope"></i></a>
-                <a href="#" class="hover:text-teal-600 transition"><i class="fas fa-share-alt"></i></a>
+                <a href="mailto:thaipoanlao@gmail.com" class="hover:text-teal-600 transition"><i class="fas fa-envelope"></i></a>
+                <button onclick="shareMyCard()" class="hover:text-teal-600 transition focus:outline-none">
+                    <i class="fas fa-share-alt"></i>
+                </button>
             </div>
-            <p class="text-xs text-gray-400 font-light">© 2024 Your Business Name. All rights reserved.</p>
+            <p class="text-xs text-gray-400 font-light">© 2026 บริษัท ไทยปนลาว จำกัด All rights reserved.</p>
         </div>
 
     </main>
